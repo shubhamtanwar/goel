@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <link type="text/css" href="css/font.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="js/sweetmodal/dist/min/jquery.sweet-modal.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>FollowUps</title>
+     <style>
+        div#load_screen{
+        
+          opacity: 1;
+          position: fixed;
+          z-index:10;
+          top: 0px;
+          width: 100%;
+          height: 1600px;
+        }
+       div#load_screen > div#loading{
+          width:120px;
+          height:24px;
+          margin-top: 45vh;
+          margin-left:40vw;
+        }
+    </style>
+    <script>
+      window.addEventListener("load", function(){
+        var load_screen = document.getElementById("load_screen");
+        $(load_screen).hide();
+      });
+    </script> 
+</head>
+
+<body>
+  <div class="app">
+   <div id="load_screen">
+    <div id="loading">
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+   <div class="navbar-fixed">
+    <nav class="light-blue lighten-1">
+      <div class="nav-wrapper">
+         <ul class="left">
+          <li><a href="dashboard.html" class="waves-effect"><i class="material-icons" style="font-size: 18px;">arrow_back</i></a></li>
+        </ul> 
+        <a class="brand-logo" style="font-size: medium;left: 43%;">FollowUps Today For You</a>
+      </div>
+    </nav>
+  </div>
+   <div class="row">
+     <div class="col s12" id="heading-notification" style="margin-top: 6px;">
+       <p class="center-align" style="color: gray;"> FOLLOW-UPS </p>
+     </div>
+     <div class="divider" style="margin-top: 6px;"></div>
+     <div class="col s12">
+        <ul class="collection" id="all_leads_today_notifications">
+            
+        </ul>
+     </div>
+   </div>
+</div>      
+</body>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/validation.js"></script>
+    <script src="js/sweetmodal/dist/min/jquery.sweet-modal.min.js"></script>
+    <script type="text/javascript" src="js/notification.js"></script>
+</html>
+<script type="text/javascript">
+    app.initialize();
+    
+    $(document).ready(function(){
+       
+    });
+</script>

@@ -1,0 +1,86 @@
+#customized-nav{
+	height: 100px !important;
+    line-height: 100px !important;
+}
+
+.dropdown_class_1{
+	display: block;
+    width: 150px;
+    left: 225px;
+    top: 0px;
+    height: 200px;
+    transform-origin: 100% 0px 0px;
+    opacity: 1;
+    transform: scaleX(1) scaleY(1);
+}
+
+.fixed-action-btn {
+    z-index: 900 !important;
+}
+
+.secondary-content-1{
+    position: absolute;
+    right: 15px;
+    bottom: 20px;
+    font-style: oblique;
+    color: #e2544a;
+}
+
+.waves-effect{
+    display: inherit !important;
+}
+
+.custom-tab-indicator .indicator{
+    background-color: #4fbff1 !important;
+}
+
+.tab-font-sizing{
+    font-size: x-small !important;
+}
+
+.custom-modal{
+    max-height: 80% !important;
+}
+
+.custom-card-span{
+    font-size: small !important;
+    font-weight: 400 !important;
+}
+
+#Lead-Assigned{
+    display: block !important;
+    border: 1px solid #9f9f9f;
+    border-radius: 6px;
+}
+
+/*#Lead-Cities{
+    display: block !important;
+    border: 1px solid #9f9f9f;
+    border-radius: 6px;
+}
+
+#Lead-Products{
+    display: block !important;
+    border: 1px solid #9f9f9f;
+    border-radius: 6px;
+}
+
+#Lead-Categories{
+    display: block !important;
+    border: 1px solid #9f9f9f;
+    border-radius: 6px;
+}*/
+
+.collection .collection-item.avatar .secondary-content {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+}
+
+.modal.bottom-sheet{
+    min-height: 90% !important;
+}
+
+.sweet-modal-icon.sweet-modal-error{
+    margin-top: 50px !important;
+}

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <link type="text/css" href="css/font.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="js/sweetmodal/dist/min/jquery.sweet-modal.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Settings</title>
+     <style>
+        div#load_screen{
+        
+          opacity: 1;
+          position: fixed;
+          z-index:10;
+          top: 0px;
+          width: 100%;
+          height: 1600px;
+        }
+       div#load_screen > div#loading{
+          width:120px;
+          height:24px;
+          margin-top: 45vh;
+          margin-left:40vw;
+        }
+    </style>
+    <script>
+      window.addEventListener("load", function(){
+        var load_screen = document.getElementById("load_screen");
+        $(load_screen).hide();
+      });
+    </script> 
+</head>
+
+<body>
+  <div class="app">
+   <div id="load_screen">
+    <div id="loading">
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+   <div class="navbar-fixed">
+    <nav class="light-blue lighten-1">
+      <div class="nav-wrapper">
+         <ul class="left">
+          <li><a href="dashboard.html" class="waves-effect"><i class="material-icons" style="font-size: 18px;">arrow_back</i></a></li>
+        </ul> 
+        <a class="brand-logo" style="font-size: medium;left: 35%;">Settings</a>
+      </div>
+    </nav>
+  </div>
+
+  <!---------------------------------- Modal Area Start--------------------------------------------->
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h5>Delete Categories</h5>
+        <div class="row" style="margin-top: 4px;">
+          <form class="col s12" id="DeleteCategory" onsubmit="return false;">
+            <div class="row">
+              <div class="input-field col s12">
+                <select name="category_id" id="Delete-Lead-Category" class="select">
+                </select>
+                <label for="Delete-Lead-Category">Choose Category</label>
+              </div>
+            </div>
+            <div class="input-field">
+              <input type="number" class="validate admin_id" name="admin_id" readonly="true" hidden="true">
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Delete</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal2" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h5>Delete City</h5>
+        <div class="row" style="margin-top: 4px;">
+          <form class="col s12" id="DeleteCity" onsubmit="return false;">
+            <div class="row">
+              <div class="input-field col s12">
+                <select name="city_id" id="Delete-Lead-City" class="select">
+                </select>
+                <label for="Delete-Lead-City">Choose City</label>
+              </div>
+            </div>
+            <div class="input-field">
+              <input type="number" class="validate admin_id" name="admin_id" readonly="true" hidden="true">
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Delete</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal3" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h5>Delete Product</h5>
+        <div class="row" style="margin-top: 4px;">
+          <form class="col s12" id="DeleteProduct" onsubmit="return false;">
+            <div class="row">
+              <div class="input-field col s12">
+                <select name="interest_id" id="Delete-Lead-Product" class="select">
+                </select>
+                <label for="Delete-Lead-Product">Choose Product</label>
+              </div>
+            </div>
+            <div class="input-field">
+              <input type="number" class="validate admin_id" name="admin_id" readonly="true" hidden="true">
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Delete</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal4" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h5>Delete Store Level</h5>
+        <div class="row" style="margin-top: 4px;">
+          <form class="col s12" id="DeleteStoreLevel" onsubmit="return false;">
+            <div class="row">
+              <div class="input-field col s12">
+                <select name="store_level_id" id="Delete-Lead-Store-Level" class="select">
+                </select>
+                <label for="Delete-Lead-Store-Level">Choose Store Level</label>
+              </div>
+            </div>
+            <div class="input-field">
+              <input type="number" class="validate admin_id" name="admin_id" readonly="true" hidden="true">
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Delete</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+  <!-----------------------------------Modal Area End----------------------------------------------->
+  <div class="row" style="margin-top: 20px;">
+    <div class='col s12'>
+      <a href='#modal1' class='waves-effect modal-trigger' style='color:black;'><li class='divider'></li><p style='font-size:small;'><span>Edit Categories <i class='material-icons right' style="font-size: 18px;">mode_edit</i></p><li class='divider'></li></a>
+    </div>
+    <div class="col s12" style="margin-top: 12px;">
+      <select id="Lead-Categories" class="select">
+          <!-- <option value="" selected>Added Categories</option> -->
+      </select>
+    </div>
+    <form class="col s12" id="AddLeadCategory" onsubmit="return false;">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">business_center</i>
+          <input type="text" class="validate" name="category">
+          <label for="category">Category</label>
+        </div>
+      </div>
+      <div class="input-field">
+        <input type="number" class="validate admin_id" name="admin_id" readonly="true" hidden="true">
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Add</button>
+        </div>
+      </div>
+    </form>
+
+    <div class='col s12'>
+      <a href='#modal2' class='waves-effect modal-trigger' style='color:black;'><li class='divider'></li><p style='font-size:small;'><span>Edit Cities <i class='material-icons right' style="font-size: 18px;">mode_edit</i></p><li class='divider'></li></a>
+    </div>
+    <div class="col s12" style="margin-top: 12px;">
+      <select  id="Lead-Cities" class="select">
+          <!-- <option value="" selected>Added Cities</option> -->
+      </select>
+    </div>
+    <form class="col s12" id="AddLeadCity" onsubmit="return false;">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">location_city</i>
+          <input type="text" class="validate" name="city">
+          <label for="city">City</label>
+        </div>
+      </div>
+      <div class="input-field">
+        <input type="number" class="validate admin_id" name="admin_id" readonly="true" hidden="true">
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Add</button>
+        </div>
+      </div>
+    </form>
+
+    <div class='col s12'>
+      <a href='#modal3' class='waves-effect modal-trigger' style='color:black;'><li class='divider'></li><p style='font-size:small;'><span>Edit Products <i class='material-icons right' style="font-size: 18px;">mode_edit</i></p><li class='divider'></li></a>
+    </div>
+    <div class="col s12" style="margin-top: 12px;"> 
+      <select id="Lead-Products" class="select">
+          <!-- <option value="" selected>Added Products</option> -->
+      </select>
+    </div>
+    <form class="col s12" id="AddProducts" onsubmit="return false;">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">shopping_cart</i>
+          <input type="text" class="validate" name="product">
+          <label for="product">Product</label>
+        </div>
+      </div>
+      <div class="input-field">
+        <input type="number" class="validate admin_id" name="admin_id" readonly="true" hidden="true">
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Add</button>
+        </div>
+      </div>
+    </form>
+
+    <div class='col s12'>
+      <a href='#modal4' class='waves-effect modal-trigger' style='color:black;'><li class='divider'></li><p style='font-size:small;'><span>Edit Store Level <i class='material-icons right' style="font-size: 18px;">mode_edit</i></p><li class='divider'></li></a>
+    </div>
+     <div class="col s12" style="margin-top: 12px;">
+      <select id="Lead-StoreLevel" class="select">
+          <<!-- option value="" selected>Added StoreLevel</option> -->
+      </select>
+    </div>
+    <form class="col s12" id="AddStoreLevel" onsubmit="return false;">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">store</i>
+          <input type="text" class="validate" name="store_level">
+          <label>Store Level</label>
+        </div>
+      </div>
+      <div class="input-field">
+        <input type="number" class="validate admin_id" name="admin_id" readonly="true" hidden="true">
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row" style="margin-top: 12px;">
+    <div class="col s12">
+      <div class="feedback" style="padding: 5px;border-radius: 2px;">
+      </div>
+    </div>
+  </div>
+
+   <!--app-->
+  </div>      
+</body>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/validation.js"></script>
+    <script src="js/sweetmodal/dist/min/jquery.sweet-modal.min.js"></script>
+    <script type="text/javascript" src="js/settings.js"></script>
+</html>
+<script type="text/javascript">
+    app.initialize();
+    
+    $(document).ready(function(){
+        $('.select').formSelect();
+        $('.modal').modal();
+    });
+</script>

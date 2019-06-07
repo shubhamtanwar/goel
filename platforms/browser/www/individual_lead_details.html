@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <link type="text/css" href="css/font.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="js/sweetmodal/dist/min/jquery.sweet-modal.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Individual Lead Details</title>
+     <style>
+        div#load_screen{
+        
+          opacity: 1;
+          position: fixed;
+          z-index:10;
+          top: 0px;
+          width: 100%;
+          height: 1600px;
+        }
+       div#load_screen > div#loading{
+          width:120px;
+          height:24px;
+          margin-top: 45vh;
+          margin-left:40vw;
+        }
+    </style>
+    <script>
+      window.addEventListener("load", function(){
+        var load_screen = document.getElementById("load_screen");
+        $(load_screen).hide();
+      });
+    </script> 
+</head>
+
+<body>
+  <div class="app">
+     <div id="load_screen">
+      <div id="loading">
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
+
+    <div class="navbar-fixed">
+      <nav class="light-blue lighten-1">
+        <div class="nav-wrapper">
+           <ul class="left">
+            <li><a class="waves-effect" id="referer-icon"><i class="material-icons" style="font-size: 18px;">arrow_back</i></a></li>
+          </ul> 
+          <a class="brand-logo" style="font-size: medium;left: 35%;">Lead Details</a>
+        </div>
+      </nav>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal custom-modal modal-fixed-footer">
+      <div class="modal-content">
+        <h5>Add Lead Activity</h5>
+        <!--Form-->
+          <div class="row" style="margin-top: 20px;">
+            <form class="col s12" id="AddLeadActivity" onsubmit="return false;">
+              <div class="row">
+                <div class="input-field col s12">
+                   <i class="material-icons prefix">book</i>
+                  <textarea id="textarea1" class="materialize-textarea" name="activity"></textarea>
+                  <label for="textarea1">Add Activity</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <select name="demo_given" class="select">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                  </select>
+                  <label>Demo Given ?</label>
+                </div>
+              </div>
+              <div class="input-field">
+                <input type="number" class="validate lead_id" name="lead_id" readonly="true" hidden="true">
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Add Activity</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row" style="margin-top: 12px;">
+            <div class="col s12">
+               <div class="feedback" style="padding: 5px;border-radius: 2px;"></div>
+            </div>
+          </div>
+        <!-------->
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+    <!--------------------------->
+
+    <!-- Modal Structure -->
+    <div id="modal2" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h5>Edit Summary</h5>
+        <!--Form-->
+          <div class="row" style="margin-top: 15px;">
+            <form class="col s12" id="UpdateLeadSummary" onsubmit="return false;">
+              <div class="row">
+                <div class="input-field col s12">
+                  <select class="select" name="lead_stage" id="Lead-Stage">
+                    <option value="" disabled>Choose your option</option>
+                    <option value="Ice">Ice</option>
+                    <option value="Cold">Cold</option>
+                    <option value="Warm">Warm</option>
+                    <option value="Hot">Hot</option>
+                  </select>
+                  <label>Stage</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <select class='select' name="lead_potential" id="Lead-Potential">
+                    <option value="" disabled>Choose your option</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                  </select>
+                  <label>Potential</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <select name="interested_in[]" id="Lead-Products" multiple class="select">
+                    <!-- <option value="" disabled selected>Choose your option</option> -->
+                  </select>
+                  <label for="Lead-Products">Interested In</label>
+                </div>
+              </div>
+               <div class="row">
+                <div class="input-field col s12">
+                  <select name="lead_category" id="Lead-Categories" class="select">
+                   <!-- <option value="" disabled selected>Choose your option</option> -->
+                  </select>
+                  <label for="Lead-Categories">Category</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="fa fa-rupee prefix" style="font-size:24px"></i>
+                  <input type="number" placeholder="" class="validate" name="deal_value" value="0" id="Lead-Deal-Value">
+                  <label for="Lead-Deal-Value">Deal Value</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                   <i class="material-icons prefix">speaker_notes</i>
+                  <textarea placeholder="" class="materialize-textarea" name="notes" id="Lead-Notes"></textarea>
+                  <label for="Lead-Notes">Notes</label>
+                </div>
+              </div>
+               <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">assignment_ind</i>
+                  <input type="number" class="validate" name="beat_no" id="Lead-Beat-No">
+                  <label for="Lead-Beat-No">Beat No.</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">assignment</i>
+                  <input type="text" class="validate" name="beat_name" id="Lead-Beat-Name">
+                  <label for="Lead-Beat-Name">Beat Name</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <select name="store_level" id="Lead-Store-Level" class="select">
+                   <!-- <option value="" disabled selected>Choose your option</option> -->
+                  </select>
+                  <label for="Lead-Store-Level">StoreLevel</label>
+                </div>
+              </div>
+              <div class="input-field">
+                <input type="number" class="validate lead_id" name="lead_id" readonly="true" hidden="true">
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Update Summary</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row" style="margin-top: 2px;">
+            <div class="col s12">
+               <div class="feedback" style="padding: 5px;border-radius: 2px;"></div>
+            </div>
+          </div>
+        <!-------->
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+    <!--------------------------->
+
+    <!-- Modal Structure -->
+    <div id="modal3" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h5>Edit Lead</h5>
+        <!--Form-->
+          <div class="row" style="margin-top: 15px;">
+            <form class="col s12" id="UpdateLeadDetails" onsubmit="return false;">
+              <div class="row">
+                <div class="input-field col s12">
+                   <i class="material-icons prefix">local_phone</i>
+                  <input type="number" placeholder="" class="validate" name="lead_mobile_no" id="Lead-Mobile-Number" maxlength="15">
+                  <label for="Lead-Mobile-Number">Mobile No.</label>
+                </div>
+              </div>
+              <div class="row" style="margin-bottom: 0px !important;">
+                <div class="input-field col s12">
+                   <i class="material-icons prefix">mail</i>
+                  <input type="email" placeholder="" class="validate" name="lead_email" id="Lead-Email">
+                  <label for="Lead-Email">Email</label>
+                </div>
+              </div>
+              <div class="row" style="margin-bottom: 0px !important;">
+                <div class="input-field col s12">
+                  <!-- <p style="font-size: 1rem;color: #a2a0a0;">City</p> -->
+                  <select name="lead_city" id="Lead-Cities" class="select">
+                    <!-- <option value="" disabled>Choose your option</option> -->
+                  </select>
+                  <label for="Lead-Cities">City</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                   <i class="material-icons prefix">business_center</i>
+                  <input type="text" placeholder="" class="validate" name="lead_designation" id="Lead-Designation">
+                  <label for="Lead-Address">Designation</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                   <i class="material-icons prefix">account_balance</i>
+                  <input type="text" placeholder="" class="validate" name="lead_company" id="Lead-Company">
+                  <label for="Lead-Address">Company</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                   <i class="material-icons prefix">home</i>
+                  <input type="text" placeholder="" class="validate" name="lead_address" id="Lead-Address">
+                  <label for="Lead-Address">Address</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                   <i class="material-icons prefix">link</i>
+                  <input type="url" placeholder="" class="validate" name="website" id="Lead-Website">
+                  <label for="Lead-Website">Website</label>
+                </div>
+              </div>
+              <div class="input-field">
+                <input type="number" class="validate lead_id" name="lead_id" readonly="true" hidden="true">
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Update Details</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row" style="margin-top: 2px;">
+            <div class="col s12">
+               <div class="feedback" style="padding: 5px;border-radius: 2px;"></div>
+            </div>
+          </div>
+        <!-------->
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+    <!--------------------------->
+
+     <!-- Modal Structure -->
+    <div id="modal4" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h5>Capture Coordinates</h5>
+        <!--Form-->
+          <div class="row" style="margin-top: 15px;">
+            <form class="col s12" id="UpdateLeadCoordinates" onsubmit="return false;">
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">person_pin_circle</i>
+                  <input type="text" class="validate" name="lead_latitude" id="lead_latitude">
+                  <label for="lead_latitude" class="active">Latitude</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">person_pin_circle</i>
+                  <input type="text" class="validate" name="lead_longitude" id="lead_longitude">
+                  <label for="lead_longitude" class="active">Longitude</label>
+                </div>
+              </div>
+              <div class="input-field">
+                <input type="number" class="validate lead_id" name="lead_id" readonly="true" hidden="true">
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Update Coordinates</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row" style="margin-top: 2px;">
+            <div class="col s12">
+               <div class="feedback" style="padding: 5px;border-radius: 2px;"></div>
+            </div>
+          </div>
+        <!-------->
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+    <!--------------------------->
+
+    <div class="row" style="margin-top: 12px;">
+      <div class="col s4" id="individual_lead_image">
+        
+      </div>
+      <div class="col s8" id="individual_lead_name" style="font-size: x-large;">
+        
+      </div>
+    </div>
+    <div class="row" id="sharing_icons">
+      
+    </div>
+    <div class="row">
+      <div class="col s8 offset-s2">
+        <p class="center-align" style="color: gray;font-size: x-small;" id="individual_lead_creation"></p>
+      </div>
+    </div>
+    <li class="divider"></li>
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs custom-tab-indicator">
+          <li class="tab col s3"><a href="#test1" class="light-blue-text text-lighten-1 active tab-font-sizing">CONTACT</a></li>
+          <li class="tab col s3"><a href="#test2" class="light-blue-text text-lighten-1 tab-font-sizing">SUMMARY</a></li>
+          <li class="tab col s3"><a href="#test3" class="light-blue-text text-lighten-1 tab-font-sizing">FOLLOW-UP</a></li>
+          <li class="tab col s3"><a href="#test4" class="light-blue-text text-lighten-1 tab-font-sizing">ACTIVITIES</a></li>
+        </ul>
+      </div>
+      <div id="test1" class="col s12"></div>
+      <div id="test2" class="col s12"></div>
+      <div id="test3" class="col s12">
+        <div class="row" style="margin-top: 15px;">
+          <form class="col s12" id="UpdateLeadAssigned" onsubmit="return false;">
+            <div class="row">
+              <div class="input-field col s12">
+                <p style="font-size: smaller;color: #9e9e9ed1;">Assigned To</p>
+                <select name="assigned_to" id="Lead-Assigned">
+                  <option value="" disabled>Choose your option</option>
+                </select>
+              </div>
+            </div>
+            <input type="number" class="validate lead_id" name="lead_id" readonly="true" hidden="true">
+            <div class="row">
+              <div class="input-field col s12">
+                <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Change</button>
+              </div>
+            </div>
+          </form>
+          <form class="col s12" id="UpdateFollowupTime" onsubmit="return false;">
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">date_range</i>
+                <input type="text" class="datepicker" name="next_follow_up_date">
+                <label for="next_follow_up_date">Follow-up Date</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">watch_later</i>
+                <input type="text" class="timepicker" name="next_follow_up_time">
+                <label for="next_follow_up_time">Follow-up Time</label>
+              </div>
+            </div>
+            <div class="input-field">
+              <input type="number" class="validate lead_id" name="lead_id" readonly="true" hidden="true">
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Update</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="row" style="margin-top: 2px;">
+          <div class="col s12">
+             <div class="feedback" style="padding: 5px;border-radius: 2px;"></div>
+          </div>
+        </div>
+      </div>
+      <div id="test4" class="col s12">
+        <div class="row">
+          <div class="col s12">
+            <ul class="tabs custom-tab-indicator">
+              <li class="tab col s6"><a href="#test41" class="light-blue-text text-lighten-1 active tab-font-sizing">ALL ACTIVITY</a></li>
+              <li class="tab col s6"><a href="#test42" class="light-blue-text text-lighten-1 tab-font-sizing">DAY-WISE ACTIVITY</a></li>
+            </ul>
+          </div>
+          <div id="test41" class="col s12">
+          </div>
+          <div id="test42" class="col s12">
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>      
+</body>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index_location.js"></script>
+    <script src="js/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/validation.js"></script>
+    <script src="js/sweetmodal/dist/min/jquery.sweet-modal.min.js"></script>
+    <script type="text/javascript" src="js/individual_lead_details.js"></script>
+</html>
+<script type="text/javascript">
+    app.initialize();
+    
+    $(document).ready(function(){
+        $('.tabs').tabs();
+        
+        $('.datepicker').datepicker({
+            format : 'yyyy-mm-dd'
+        });
+
+        $('.timepicker').timepicker({
+            twelveHour:false,
+            vibrate : false,
+            showClearBtn : true
+        });
+        
+        $('.select').formSelect();
+
+    });
+</script>

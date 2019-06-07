@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <meta http-equiv="Content-Security-Policy" content="default-src *;style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src *" /> 
+    <link type="text/css" href="css/font.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="js/sweetmodal/dist/min/jquery.sweet-modal.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Login</title>
+     <style>
+        div#load_screen{
+        
+          opacity: 1;
+          position: fixed;
+          z-index:10;
+          top: 0px;
+          width: 100%;
+          height: 1600px;
+        }
+       div#load_screen > div#loading{
+          width:120px;
+          height:24px;
+          margin-top: 45vh;
+          margin-left:40vw;
+        }
+    </style>
+    <script>
+      window.addEventListener("load", function(){
+        var load_screen = document.getElementById("load_screen");
+        $(load_screen).hide();
+      });
+    </script> 
+</head>
+
+<body>
+   <div id="load_screen">
+    <div id="loading">
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+   <nav class="light-blue lighten-1" role="navigation" id="customized-nav">
+        <div class="nav-wrapper container"> 
+            <a id="logo-container" href="#" class="brand-logo">GrowLeads</a>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger" style="margin-top:24px;"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <ul id="nav-mobile" class="sidenav">
+        <li style="margin-top: 25px;"><p style="padding-left: 20px;">GrowLeads</p></li>
+        <div class="divider greydivider"></div>
+        <li><a href="#" id="Exit-App">Exit</a></li>
+    </ul>
+    <div class="card-panel" style="padding: 12px;">
+        <span class="light-blue-text text-lighten-1"><h5 class="center-align">Login <i class="material-icons small">account_circle</i></h5></span>
+    </div>
+    <div class="container" style="margin-top: 25px;">
+      <div class="row">
+        <form class="col s12" id="loginform" onsubmit="return false;">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mail</i>
+              <input id="employee_email" type="email" class="validate" name="employee_email">
+              <label for="employee_email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">vpn_key</i>
+              <input id="employee_password" type="password" class="validate" name="employee_password">
+              <label for="employee_password">Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+               <button class="btn waves-effect waves-light col s12 light-blue lighten-1" type="submit" name="action">Login
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+       <div class="row" style="margin-top: 12px;">
+        <div class="col s12">
+          <div class="feedback" style="padding: 5px;border-radius: 2px;">
+          </div>
+        </div>
+      </div>
+    </div>    
+</body>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script src="js/jquery-3.4.0.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/validation.js"></script>
+    <script src="js/sweetmodal/dist/min/jquery.sweet-modal.min.js"></script>  
+    <script type="text/javascript" src="js/login.js"></script>
+</html>
+<script type="text/javascript">
+    app.initialize();
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
+    });
+
+    document.addEventListener("backbutton", function (e) {
+      e.preventDefault();
+      navigator.notification.confirm("Are you sure want to exit from App?", onConfirmExit, "Confirmation", "Yes,No");
+    }, false);
+
+    $(document).on('click',"#Exit-App",function(e){
+      e.preventDefault();
+      navigator.notification.confirm("Are you sure want to exit from App?", onConfirmExit, "Confirmation", "Yes,No");
+    });
+
+    function onConfirmExit(button) {
+        if (button == 2) { //If User select a No, then return back;
+            return;
+        } 
+        else {
+            navigator.app.exitApp(); // If user select a Yes, quit from the app.
+        }
+    }
+</script>
